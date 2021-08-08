@@ -9,9 +9,9 @@ export default function PostOverview(props) {
             return (
                 <div>
                   <div className={styles.title}>
-                      <a href={`/post/${post.slug}/`}>
-                        <h3>{ post.title }</h3>
-                      </a>
+                    <a className={styles.postLink} href={`/post/${post.slug}/`}>
+                      <h3>{ post.title }</h3>
+                    </a>
                     <time className={styles.time}>{ post.created_at }</time>
                   </div>
                   <p className={styles.content}>{ post.content }</p>
