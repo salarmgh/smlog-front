@@ -4,19 +4,21 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import BlogPage from "./pages/BlogPage";
+import Home from "./layout/Home";
+import Post from "./layout/Post";
 
 export default function App() {
   return (
     <Router>
         <Switch>
+          <Route path="/post/:slug/">
+            <BlogPage component={Post} />
+          </Route>
           <Route path="/">
-            <Home />
+            <BlogPage component={Home} />
           </Route>
         </Switch>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
 }
