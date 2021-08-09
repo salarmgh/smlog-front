@@ -1,8 +1,8 @@
 import {Form, Button} from "react-bootstrap";
-import styles from "./Comment.module.scss";
+import styles from "./CommentForm.module.scss";
 
 
-export default function Comment() {
+export default function CommentForm() {
     return (
       <Form className={styles.comment}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

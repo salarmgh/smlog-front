@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Post from "../components/Post";
 import Comments from "../containers/Comments";
-import Comment from "../components/Comment";
+import CommentForm from "../components/CommentForm";
 
 export default function PostView() {
     const [post, setPost] = useState({
@@ -13,13 +13,7 @@ export default function PostView() {
         updated_at: ""
     })
 
-    const [comments, setComments] = useState({
-        id: "",
-        title: "",
-        content: "",
-        created_at: "",
-        updated_at: ""
-    })
+    const [comments, setComments] = useState([])
 
     const { slug } = useParams();
     useEffect(() => {
@@ -40,7 +34,7 @@ export default function PostView() {
             <Post post={post} />
             <hr />
             <Comments comments={comments} />
-            <Comment />
+            <CommentForm />
         </React.Fragment>
     )
 }
