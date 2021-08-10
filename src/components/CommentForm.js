@@ -1,19 +1,57 @@
+import { useState } from "react";
 import {Form, Button} from "react-bootstrap";
 import styles from "./CommentForm.module.scss";
 
 
-export default function CommentForm() {
+export default function CommentForm(props) {
+    const [comment, setComment] = useState({
+        name: "",
+        content: "",
+        post: null,
+        reply_to: null
+    });
+
+    function handleCommentNameChange(event) {
+        const cmt = comment;
+        cmt.name = event.target.value;
+        setComment(cmt)
+    }
+    function handleCommentContentChange(event) {
+        const cmt = comment;
+        cmt.content = event.target.value;
+        setComment(cmt)
+    }
+    function sendComment(event) {
+        event.preventDefault();
+        const cmt = comment;
+        cmt.post = props.post;
+        cmt.reply_to = props.replyTo;
+        fetch('http://localhost:8000/comment/', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+        })
+        .then(() => window.location.reload(false))
+    }
+
     return (
-      <Form className={styles.comment}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Name" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Comment</Form.Label>
-          <Form.Control as="textarea" rows={3} />
-        </Form.Group>
-        <Button variant="outline-dark">Search</Button>
-      </Form>
+        <Form className={styles.comment}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" placeholder="Name" onChange={handleCommentNameChange} />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Content</Form.Label>
+            <Form.Control as="textarea" placeholder="Content" rows={3} onChange={handleCommentContentChange}/>
+          </Form.Group>
+          <Button variant="primary" type="submit" onClick={sendComment}>
+            Submit
+          </Button>
+        </Form>
     )
 }
+

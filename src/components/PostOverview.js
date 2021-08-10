@@ -7,7 +7,7 @@ export default function PostOverview(props) {
         {
         props.posts.map((post, index) => {
             return (
-                <div>
+                <div key={index}>
                   <div className={styles.title}>
                     <a className={styles.postLink} href={`/post/${post.slug}/`}>
                       <h3>{ post.title }</h3>

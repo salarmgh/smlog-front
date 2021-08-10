@@ -5,6 +5,7 @@ import Comments from "../containers/Comments";
 import CommentForm from "../components/CommentForm";
 
 export default function PostView() {
+    const { slug } = useParams();
     const [post, setPost] = useState({
         id: "",
         title: "",
@@ -12,29 +13,29 @@ export default function PostView() {
         created_at: "",
         updated_at: ""
     })
-
     const [comments, setComments] = useState([])
 
-    const { slug } = useParams();
     useEffect(() => {
       fetch(`http://localhost:8000/posts/${slug}/`)
         .then(res => res.json())
         .then((result) => {
           setPost(result);
         })
-      fetch(`http://localhost:8000/comments`)
+    }, [slug])
+    useEffect(() => {
+      post.id && fetch(`http://localhost:8000/comments/${post.id}/`)
         .then(res => res.json())
         .then((result) => {
           setComments(result.results)
       })
-    }, [])
+    }, [post])
 
     return (
         <React.Fragment>
             <Post post={post} />
             <hr />
-            <Comments comments={comments} />
-            <CommentForm />
+            <Comments post={post.id} comments={comments} />
+            <CommentForm post={post.id} />
         </React.Fragment>
     )
 }
