@@ -25,7 +25,7 @@ export default function Comments(props) {
                         { comment.content }
                     </Card.Text>
                     <Replies replies={comment.replies} />
-                    {replyIndex === String(index) ? <CommentForm post={props.post} replyTo={ comment.id } /> : <Button varian="primary" onClick={replyHandle} value={index}>Reply</Button>}
+                    {replyIndex === String(index) ? <CommentForm post={props.post} replyTo={ comment.id } /> : <Button variant="dark" onClick={replyHandle} value={index}>پاسخ</Button>}
                   </Card.Body>
                 </Card>
               )

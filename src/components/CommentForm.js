@@ -40,16 +40,16 @@ export default function CommentForm(props) {
     return (
         <Form className={styles.comment}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Name" onChange={handleCommentNameChange} />
+            <Form.Label>نام</Form.Label>
+            <Form.Control type="text" placeholder="نام" onChange={handleCommentNameChange} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Content</Form.Label>
-            <Form.Control as="textarea" placeholder="Content" rows={3} onChange={handleCommentContentChange}/>
+            <Form.Label>کامنت</Form.Label>
+            <Form.Control as="textarea" placeholder="کامنت" rows={3} onChange={handleCommentContentChange}/>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={sendComment}>
-            Submit
+          <Button variant="dark" type="submit" onClick={sendComment}>
+            ارسال
           </Button>
         </Form>
     )

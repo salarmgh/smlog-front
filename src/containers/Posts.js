@@ -2,16 +2,7 @@ import { useState, useEffect } from 'react';
 import PostOverview from "../components/PostOverview";
 
 export default function Posts() {
-    const [posts, setPosts] = useState([
-      {
-        id: 0,
-        title: "",
-        content: "",
-        slug: "",
-        created_at: "",
-        updated_at: ""
-      }
-    ]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
       fetch("http://localhost:8000/posts/")
@@ -26,6 +17,7 @@ export default function Posts() {
           }
         )
     }, []);
+
     return (
       <div>
           <PostOverview posts={posts}/>
