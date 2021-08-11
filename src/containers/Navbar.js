@@ -9,7 +9,7 @@ export default function NavigationBar(props) {
               <Nav className="me-auto">
                   {
                     props.links.map((navLink, index) => {
-                      return <Nav.Link className={styles.navbarLinks} href={navLink.link}>{navLink.name}</Nav.Link>
+                      return <Nav.Link key={index} className={styles.navbarLinks} href={navLink.link}>{navLink.name}</Nav.Link>
                     })
                   }
               </Nav>
