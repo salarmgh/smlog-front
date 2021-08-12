@@ -10,7 +10,7 @@ export default function Post(props) {
           </a>
           <time className={styles.time}>{ props.post.created_at }</time>
         </div>
-        <p className={styles.content}>{ props.post.content }</p>
+          <div className={styles.content} dangerouslySetInnerHTML={{ __html: props.post.content }} />
         <p className={styles.time}>Updated at:
           <time className={styles.time}>{ props.post.updated_at }</time>
         </p>
