@@ -5,11 +5,13 @@ import NavigationBar from "../containers/Navbar";
 import styles from "./BlogPage.module.scss";
 
 export default function BlogPage(props) {
+    const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
     const [meta, setMeta] = useState("");
     const [navLinks, setNavLinks] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-      fetch("http://localhost:8000/meta/")
+      fetch(`${backendUrl}/meta/`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -23,7 +25,7 @@ export default function BlogPage(props) {
     }, []);
 
     useEffect(() => {
-      fetch("http://localhost:8000/nav-links/")
+      fetch(`${backendUrl}/nav-links/`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -36,11 +38,21 @@ export default function BlogPage(props) {
         )
     }, []);
 
+    useEffect(() => {
+        fetch(`${backendUrl}/categories/`)
+          .then(res => res.json())
+            .then(
+              (result) => {
+                setCategories(result.results);
+              }
+            )
+    }, [])
+
     return (
       <React.Fragment>
         <Container>
           <Header meta={meta} />
-          <NavigationBar links={navLinks} />
+          <NavigationBar links={navLinks} categories={categories} />
           <Container className={styles.content}>
             <props.component />
           </Container>

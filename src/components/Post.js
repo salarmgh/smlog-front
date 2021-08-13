@@ -11,7 +11,7 @@ export default function Post(props) {
           <time className={styles.time}>{ props.post.created_at }</time>
         </div>
           <div className={styles.content} dangerouslySetInnerHTML={{ __html: props.post.content }} />
-        <p className={styles.time}>Updated at:
+        <p className={styles.time}>بروز رسانی:
           <time className={styles.time}>{ props.post.updated_at }</time>
         </p>
       </div>

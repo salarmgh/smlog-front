@@ -4,6 +4,7 @@ import styles from "./CommentForm.module.scss";
 
 
 export default function CommentForm(props) {
+    const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
     const [comment, setComment] = useState({
         name: "",
         content: "",
@@ -26,7 +27,7 @@ export default function CommentForm(props) {
         const cmt = comment;
         cmt.post = props.post;
         cmt.reply_to = props.replyTo;
-        fetch('http://localhost:8000/comment/', {
+        fetch(`${backendUrl}/comment/`, {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Posts from "../containers/Posts";
 import Pagination from "../components/Pagination";
 import { Container } from "react-bootstrap";
 
-export default function Home() {
+export default function Category() {
     const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
+    const { category } = useParams();
     let query = new URLSearchParams(useLocation().search);
     const pageNumber = query.get("page") ? parseInt(query.get("page")) : 1
 
@@ -15,7 +16,7 @@ export default function Home() {
     });
 
     useEffect(() => {
-      fetch(`${backendUrl}/posts/?page=${pageNumber}`)
+      fetch(`${backendUrl}/category/${category}/?page=${pageNumber}`)
         .then(res => res.json())
         .then(
           (result) => {

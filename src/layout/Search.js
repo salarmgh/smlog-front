@@ -7,6 +7,7 @@ import { Container } from "react-bootstrap";
 export default function Home() {
     const backendUrl = process.env.REACT_APP_BACKEND_BASE_URL;
     let query = new URLSearchParams(useLocation().search);
+    const searchQuery = query.get("q")
     const pageNumber = query.get("page") ? parseInt(query.get("page")) : 1
 
     const [posts, setPosts] = useState({
@@ -15,7 +16,7 @@ export default function Home() {
     });
 
     useEffect(() => {
-      fetch(`${backendUrl}/posts/?page=${pageNumber}`)
+      fetch(`${backendUrl}/search/?page=${pageNumber}&search=title:${searchQuery}&search=content:${searchQuery}`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -26,7 +27,7 @@ export default function Home() {
               console.log("Failed");
           }
         )
-    }, []);
+    }, [searchQuery]);
 
     return (
       <React.Fragment>

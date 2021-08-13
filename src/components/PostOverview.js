@@ -14,7 +14,7 @@ export default function PostOverview(props) {
                     </a>
                     <time className={styles.time}>{ post.created_at }</time>
                   </div>
-                  <p className={styles.content}>{ post.content }</p>
+                  <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content }} />
                 </div>
               )
             }
