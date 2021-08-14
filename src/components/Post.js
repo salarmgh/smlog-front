@@ -1,4 +1,12 @@
 import styles from "./Post.module.scss";
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
 
 
 export default function Post(props) {
@@ -14,6 +22,9 @@ export default function Post(props) {
         <p className={styles.time}>بروز رسانی:
           <time className={styles.time}>{ props.post.updated_at }</time>
         </p>
+        <div>
+          <TwitterShareButton title="folan" via="@salarmgh" hashtags="#kirekhar" related="@salarmgh" />         
+        </div>
       </div>
     )
 }
